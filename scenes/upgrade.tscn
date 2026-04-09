@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://bd1lnnxn5xsf5"]
+
+[ext_resource type="Script" uid="uid://dar17uxxxx2d8" path="res://Scripts/upgrade.gd" id="1_g1npk"]
+[ext_resource type="Texture2D" uid="uid://cpgnrd7h7vpjs" path="res://Sprites/upgrade.png" id="1_xsw34"]
+[ext_resource type="Texture2D" uid="uid://qa6gwg506hio" path="res://Sprites/lights/main.png" id="2_b2g4b"]
+[ext_resource type="AudioStream" uid="uid://bn238g2nmbkvb" path="res://Audio /Upgrades/Pickup22.wav" id="4_346kr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b2g4b"]
+radius = 9.0
+
+[sub_resource type="Animation" id="Animation_g1npk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.8, 0.8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.8]
+}
+
+[sub_resource type="Animation" id="Animation_346kr"]
+resource_name = "upgrade"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.0096102),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.8, 0.8), Vector2(1.6, 1.6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.8, 1.6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_00gwf"]
+_data = {
+&"RESET": SubResource("Animation_g1npk"),
+&"upgrade": SubResource("Animation_346kr")
+}
+
+[node name="Upgrade" type="Node2D" unique_id=1180611457]
+scale = Vector2(3, 3)
+script = ExtResource("1_g1npk")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=603766642]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_xsw34")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=890426479]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2103065080]
+shape = SubResource("CircleShape2D_b2g4b")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=108976437]
+scale = Vector2(0.1, 0.1)
+color = Color(0.92385644, 0.91863245, 0.22020471, 1)
+energy = 0.8
+texture = ExtResource("2_b2g4b")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=73139724]
+libraries/ = SubResource("AnimationLibrary_00gwf")
+autoplay = &"upgrade"
+
+[node name="Pickup" type="AudioStreamPlayer" parent="." unique_id=885234505]
+stream = ExtResource("4_346kr")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

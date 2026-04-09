@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://8dcqfrp0ajwk"]
+
+[sub_resource type="Gradient" id="Gradient_e7xno"]
+colors = PackedColorArray(0.9034305, 0.42009103, 0.13085467, 1, 1, 1, 1, 1)
+
+[node name="Exhaust" type="Node2D" unique_id=517113737]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1671118156]
+amount = 17
+lifetime = 0.21000000000000002
+speed_scale = 0.9
+emission_shape = 1
+emission_sphere_radius = 1.0
+scale_amount_min = 0.0
+scale_amount_max = 5.0
+color = Color(0.9379797, 0.9059531, 0.32354385, 1)
+color_ramp = SubResource("Gradient_e7xno")
+hue_variation_min = -0.64
+hue_variation_max = -0.07

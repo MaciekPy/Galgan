@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dup1lt1yhbevp"]
+
+[sub_resource type="Gradient" id="Gradient_vglmo"]
+offsets = PackedFloat32Array(0.33333334, 0.8888889, 1)
+colors = PackedColorArray(0.9843137, 0, 0, 1, 0.17051727, 0.5397034, 3.2800216e-07, 1, 0.026259415, 0.6335649, 3.85046e-07, 1)
+
+[node name="Bleed" type="Node2D" unique_id=476139843]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1451390120]
+amount = 20
+lifetime = 1.12
+preprocess = 1.06
+explosiveness = 0.1
+lifetime_randomness = 0.1
+emission_shape = 2
+emission_sphere_radius = 5.0
+scale_amount_max = 10.0
+color_ramp = SubResource("Gradient_vglmo")

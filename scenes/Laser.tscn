@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b2s1qcr54pqk2"]
+
+[ext_resource type="Script" uid="uid://dwukhi88g36xc" path="res://Scripts/laser.gd" id="1_ag3aa"]
+[ext_resource type="Texture2D" uid="uid://ilfistiv3cm4" path="res://Sprites/laserSprite.png" id="2_ha5if"]
+[ext_resource type="Texture2D" uid="uid://dmxoqet6iqxsi" path="res://Sprites/lights/l3.png" id="3_ha5if"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3ayh"]
+size = Vector2(2, 16)
+
+[node name="Laser" type="Area2D" unique_id=1136076609]
+scale = Vector2(4, 4)
+script = ExtResource("1_ag3aa")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=585974568]
+texture = ExtResource("2_ha5if")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1438151526]
+shape = SubResource("RectangleShape2D_y3ayh")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=846461687]
+scale = Vector2(0.140625, 1.34375)
+color = Color(0.101960786, 1, 1, 1)
+texture = ExtResource("3_ha5if")

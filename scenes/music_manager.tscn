@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bjdirls2k831r"]
+
+[ext_resource type="AudioStream" uid="uid://ck7v350jahlur" path="res://Audio /Space Fighter Soundtrack.wav" id="1_tn5dr"]
+
+[node name="MusicManager" type="AudioStreamPlayer" unique_id=1002609057]
+stream = ExtResource("1_tn5dr")
+volume_db = -4.0
+autoplay = true
+bus = &"Music"

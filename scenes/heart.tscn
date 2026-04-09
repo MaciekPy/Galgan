@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bfg65dn4tei5n"]
+
+[ext_resource type="Script" uid="uid://deo7a21kh8yt0" path="res://scenes/heart.gd" id="1_ycbwg"]
+[ext_resource type="Texture2D" uid="uid://c42ugtugyfkty" path="res://Sprites/hearth_new.png" id="2_ycbwg"]
+[ext_resource type="Texture2D" uid="uid://dioc3y7i0745i" path="res://Sprites/lights/l2.png" id="3_krgnv"]
+[ext_resource type="AudioStream" uid="uid://dciikv86wmefc" path="res://Audio /Upgrades/PowerUp14.wav" id="4_txm48"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ycbwg"]
+
+[node name="Heart" type="Area2D" unique_id=1869547643]
+scale = Vector2(2.5, 2.5)
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_ycbwg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1806392531]
+shape = SubResource("CircleShape2D_ycbwg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1211727513]
+texture = ExtResource("2_ycbwg")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=639014031]
+position = Vector2(-0.4, 0.8)
+scale = Vector2(0.7699999, 0.81333333)
+texture = ExtResource("3_krgnv")
+
+[node name="Pick_up" type="AudioStreamPlayer" parent="." unique_id=985881736]
+stream = ExtResource("4_txm48")
+pitch_scale = 2.0
+bus = &"Effects"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

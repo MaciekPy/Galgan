@@ -1,0 +1,392 @@
+[gd_scene format=3 uid="uid://cdtktemqoq0nx"]
+
+[ext_resource type="Script" uid="uid://c7bk4ifkvqt0m" path="res://Scripts/game.gd" id="1_feb5d"]
+[ext_resource type="PackedScene" uid="uid://diyorgnth0qf8" path="res://scenes/player.tscn" id="2_e2o6t"]
+[ext_resource type="Shader" uid="uid://b6lk1xf2c4sn" path="res://Shaders/vhs_shader.gdshader" id="2_p57ef"]
+[ext_resource type="FontFile" uid="uid://b63cdbaxppjjn" path="res://PressStart2P-Regular.ttf" id="3_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://6s7tgae7iq68" path="res://Sprites/Background_Space.png" id="3_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://c42ugtugyfkty" path="res://Sprites/hearth_new.png" id="5_p57ef"]
+[ext_resource type="AudioStream" uid="uid://dciikv86wmefc" path="res://Audio /Upgrades/PowerUp14.wav" id="7_u5sy4"]
+[ext_resource type="AudioStream" uid="uid://ld28yubltgp5" path="res://Audio /Upgrades/Pickup10.wav" id="8_gee14"]
+[ext_resource type="PackedScene" uid="uid://d3cuusw6cp078" path="res://scenes/transistion_animation.tscn" id="9_0tnpc"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_u5sy4"]
+viewport_path = NodePath("CanvasLayer/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gee14"]
+resource_local_to_scene = true
+shader = ExtResource("2_p57ef")
+shader_parameter/tex = SubResource("ViewportTexture_u5sy4")
+shader_parameter/mask_type = 4
+shader_parameter/curve = 0.030000001425
+shader_parameter/sharpness = 0.8210000152475
+shader_parameter/color_offset = 0.28000003705
+shader_parameter/mask_brightness = 1.0
+shader_parameter/scanline_brightness = 0.9570000217075
+shader_parameter/min_scanline_thickness = 0.9450000330125
+shader_parameter/aspect = 0.5
+shader_parameter/wobble_strength = 1.0
+
+[sub_resource type="Gradient" id="Gradient_e2o6t"]
+colors = PackedColorArray(0.15912649, 1.2559117e-07, 3.008172e-08, 1, 0.24874464, 4.4256227e-05, 0.2508013, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_feb5d"]
+gradient = SubResource("Gradient_e2o6t")
+width = 1200
+
+[sub_resource type="Curve2D" id="Curve2D_p57ef"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 240.54036, 191.8177, -90.81667, -24.768183, 90.81667, 24.768183, 368, 288, 0, 0, 0, 0, 656.54034, 319.8177, -96.12414, 35.383118, 96.12414, -35.383118, 944, 280, 0, 0, 0, 0, 1072.5404, 191.8177)
+}
+point_count = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
+size = Vector2(69, 1295)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_feb5d"]
+size = Vector2(1073, 66)
+
+[sub_resource type="Animation" id="Animation_gee14"]
+resource_name = "BossTime"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/SubViewport/Score/Boss_Incoming:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 3.6, 3.632633, 3.7, 3.7330673, 3.8, 3.8333333, 3.9, 3.9333334, 3.9666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_lbhrr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/SubViewport/Score/Swarm:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/SubViewport/Score/Health:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/SubViewport/Score/Boss_Incoming:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_iywne"]
+resource_name = "SwarmTime"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/SubViewport/Score/Swarm:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 1.5333333, 1.5666666, 1.6333332, 1.6666665, 1.7333333, 1.7666667, 1.8333333, 1.8666666, 1.8999999),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_p57ef"]
+resource_name = "Upgrade"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/SubViewport/Score/Upgrade text:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.2333333, 3.6, 3.7, 3.9666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_u5sy4"]
+resource_name = "hearts"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/SubViewport/Score/Health:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.60291547),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(3.5, 3.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p57ef"]
+_data = {
+&"BossTime": SubResource("Animation_gee14"),
+&"RESET": SubResource("Animation_lbhrr"),
+&"SwarmTime": SubResource("Animation_iywne"),
+&"Upgrade": SubResource("Animation_p57ef"),
+&"hearts": SubResource("Animation_u5sy4")
+}
+
+[node name="Game" type="Node2D" unique_id=1127555095]
+script = ExtResource("1_feb5d")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1658623046]
+
+[node name="vhs" type="ColorRect" parent="CanvasLayer" unique_id=331483731]
+material = SubResource("ShaderMaterial_gee14")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer" unique_id=1901907243]
+size = Vector2i(960, 1280)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/SubViewport" unique_id=443425395]
+visible = false
+position = Vector2(439.9999, 621.5)
+scale = Vector2(2.0766666, 1966.9999)
+texture = SubResource("GradientTexture1D_feb5d")
+
+[node name="Lasers" type="Node2D" parent="CanvasLayer/SubViewport" unique_id=2120099771]
+
+[node name="Entities" type="Node2D" parent="CanvasLayer/SubViewport" unique_id=2087643358]
+
+[node name="Player" parent="CanvasLayer/SubViewport/Entities" unique_id=1553243743 instance=ExtResource("2_e2o6t")]
+position = Vector2(407.00003, 1173.0001)
+collision_mask = 25
+
+[node name="Path2D2" type="Path2D" parent="CanvasLayer/SubViewport/Entities" unique_id=1809132679]
+position = Vector2(-184, -64)
+curve = SubResource("Curve2D_p57ef")
+
+[node name="Score" type="Control" parent="CanvasLayer/SubViewport" unique_id=274811920]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Score" type="Label" parent="CanvasLayer/SubViewport/Score" unique_id=1643139209]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 13.0
+offset_top = 1226.0
+offset_right = 253.0
+offset_bottom = 1280.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 0.12156863, 1)
+theme_override_fonts/font = ExtResource("3_lbhrr")
+theme_override_font_sizes/font_size = 20
+text = "Score : "
+
+[node name="Swarm" type="Label" parent="CanvasLayer/SubViewport/Score" unique_id=468553007]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 43.0
+offset_top = 537.0
+offset_right = 893.0
+offset_bottom = 591.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 0.12156863, 1)
+theme_override_fonts/font = ExtResource("3_lbhrr")
+theme_override_font_sizes/font_size = 50
+text = "Swarm Incoming!!!"
+
+[node name="Boss_Incoming" type="Label" parent="CanvasLayer/SubViewport/Score" unique_id=1203252903]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 43.0
+offset_top = 537.0
+offset_right = 893.0
+offset_bottom = 591.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 0.12156863, 1)
+theme_override_fonts/font = ExtResource("3_lbhrr")
+theme_override_font_sizes/font_size = 50
+text = "Boss Incoming"
+horizontal_alignment = 1
+
+[node name="Upgrade text" type="Label" parent="CanvasLayer/SubViewport/Score" unique_id=1905998858]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.52
+anchor_right = 1.0
+anchor_bottom = 2.07
+offset_left = -47.0
+offset_top = 2107.0
+offset_right = 990.0
+offset_bottom = 27.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 0.12156863, 1)
+theme_override_fonts/font = ExtResource("3_lbhrr")
+theme_override_font_sizes/font_size = 30
+text = "Upgrade"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Health" type="Node2D" parent="CanvasLayer/SubViewport/Score" unique_id=123381899]
+position = Vector2(840, 1135)
+scale = Vector2(3, 3)
+
+[node name="Heart1" type="Sprite2D" parent="CanvasLayer/SubViewport/Score/Health" unique_id=1284971468]
+position = Vector2(-47, 24)
+texture = ExtResource("5_p57ef")
+
+[node name="Heart2" type="Sprite2D" parent="CanvasLayer/SubViewport/Score/Health" unique_id=840667152]
+position = Vector2(-17, 24)
+texture = ExtResource("5_p57ef")
+
+[node name="Heart3" type="Sprite2D" parent="CanvasLayer/SubViewport/Score/Health" unique_id=2118863875]
+position = Vector2(11.666667, 24)
+texture = ExtResource("5_p57ef")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="CanvasLayer/SubViewport" unique_id=1672609909]
+color = Color(0.8998087, 0.73535967, 0.82628554, 1)
+energy = 0.86
+blend_mode = 2
+
+[node name="Backgrounds" type="Node2D" parent="CanvasLayer/SubViewport" unique_id=1938995992]
+metadata/_edit_lock_ = true
+
+[node name="Background" type="Sprite2D" parent="CanvasLayer/SubViewport/Backgrounds" unique_id=741902592]
+z_index = -1
+position = Vector2(456, -694)
+scale = Vector2(0.6046296, 0.7215278)
+texture = ExtResource("3_lnu2h")
+
+[node name="Background2" type="Sprite2D" parent="CanvasLayer/SubViewport/Backgrounds" unique_id=1474082905]
+z_index = -1
+position = Vector2(457, -4848)
+scale = Vector2(0.6046296, 0.7215278)
+texture = ExtResource("3_lnu2h")
+flip_h = true
+
+[node name="Background3" type="Sprite2D" parent="CanvasLayer/SubViewport/Backgrounds" unique_id=524559960]
+z_index = -1
+position = Vector2(457.00003, -9000)
+scale = Vector2(0.6046296, 0.7215278)
+texture = ExtResource("3_lnu2h")
+
+[node name="Background4" type="Sprite2D" parent="CanvasLayer/SubViewport/Backgrounds" unique_id=582861834]
+z_index = -1
+position = Vector2(457, -13153)
+scale = Vector2(0.6046296, 0.7215278)
+texture = ExtResource("3_lnu2h")
+flip_h = true
+
+[node name="Upgrades" type="Node2D" parent="CanvasLayer/SubViewport" unique_id=924300362]
+
+[node name="Borders" type="StaticBody2D" parent="CanvasLayer/SubViewport" unique_id=847716249]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/SubViewport/Borders" unique_id=1590728546]
+position = Vector2(-59, 639.5)
+shape = SubResource("RectangleShape2D_e2o6t")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CanvasLayer/SubViewport/Borders" unique_id=1285701706]
+position = Vector2(1013.5, 646.5)
+shape = SubResource("RectangleShape2D_e2o6t")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="CanvasLayer/SubViewport/Borders" unique_id=1802699214]
+position = Vector2(479.5, -46)
+shape = SubResource("RectangleShape2D_feb5d")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="CanvasLayer/SubViewport/Borders" unique_id=35822049]
+position = Vector2(467.5, 1342)
+shape = SubResource("RectangleShape2D_feb5d")
+
+[node name="TransistionAnimation" parent="CanvasLayer/SubViewport" unique_id=2128470441 instance=ExtResource("9_0tnpc")]
+
+[node name="Enemies Faster" type="Timer" parent="." unique_id=526240603]
+wait_time = 10.0
+autostart = true
+
+[node name="Enemy Spawn" type="Timer" parent="." unique_id=497708836]
+autostart = true
+
+[node name="Enemy Spawn2" type="Timer" parent="." unique_id=1396887181]
+wait_time = 2.0
+autostart = true
+
+[node name="UpgradeTimer" type="Timer" parent="." unique_id=2021627902]
+wait_time = 6.0
+one_shot = true
+
+[node name="Enemy2 Spawn" type="Timer" parent="." unique_id=885520004]
+wait_time = 5.0
+autostart = true
+
+[node name="SwarmTimer" type="Timer" parent="." unique_id=1800839026]
+wait_time = 20.0
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1872508740]
+libraries/ = SubResource("AnimationLibrary_p57ef")
+
+[node name="BOSS" type="Timer" parent="." unique_id=2084008494]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="BOSS_suspense" type="Timer" parent="." unique_id=1532689119]
+wait_time = 3.0
+one_shot = true
+
+[node name="Pick-up_Heart" type="AudioStreamPlayer" parent="." unique_id=849203493]
+stream = ExtResource("7_u5sy4")
+volume_db = -5.0
+bus = &"Effects"
+
+[node name="Pick_up_Shield" type="AudioStreamPlayer" parent="." unique_id=2116219183]
+stream = ExtResource("8_gee14")
+volume_db = -10.0
+bus = &"Effects"
+
+[connection signal="player_is_hit" from="CanvasLayer/SubViewport/Entities/Player" to="." method="_on_player_player_is_hit"]
+[connection signal="shoot" from="CanvasLayer/SubViewport/Entities/Player" to="." method="_on_player_shoot"]
+[connection signal="timeout" from="Enemies Faster" to="." method="_on_enemies_faster_timeout"]
+[connection signal="timeout" from="Enemy Spawn" to="." method="_on_enemy_spawn_timeout"]
+[connection signal="timeout" from="Enemy Spawn2" to="." method="_on_enemy_spawn_2_timeout"]
+[connection signal="timeout" from="UpgradeTimer" to="." method="_on_upgrade_timer_timeout"]
+[connection signal="timeout" from="Enemy2 Spawn" to="." method="_on_enemy_2_spawn_timeout"]
+[connection signal="timeout" from="SwarmTimer" to="." method="_on_swarm_timer_timeout"]
+[connection signal="timeout" from="BOSS" to="." method="_on_boss_timeout"]
+[connection signal="timeout" from="BOSS_suspense" to="." method="_on_boss_suspense_timeout"]

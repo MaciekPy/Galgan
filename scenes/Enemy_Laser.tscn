@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://l21k1e2kk1cb"]
+
+[ext_resource type="Script" uid="uid://dtni7kby0bmr1" path="res://scenes/enemy_laser.gd" id="1_cqdrw"]
+[ext_resource type="Texture2D" uid="uid://r4g3g2kipf78" path="res://Sprites/Enemy_Laser.png" id="1_e04uq"]
+[ext_resource type="Texture2D" uid="uid://dijla4pisrrw8" path="res://Sprites/lights/main.png" id="2_glmwf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_glmwf"]
+radius = 6.0
+
+[node name="Area2D" type="Area2D" unique_id=1091603726]
+scale = Vector2(3, 3)
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("1_cqdrw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=463890801]
+shape = SubResource("CircleShape2D_glmwf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=310831424]
+texture = ExtResource("1_e04uq")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=557295706]
+scale = Vector2(0.1, 0.1)
+color = Color(0.9882353, 0.08235294, 0.23137255, 1)
+texture = ExtResource("2_glmwf")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

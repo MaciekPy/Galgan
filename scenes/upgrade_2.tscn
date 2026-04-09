@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dm1puuty15r4q"]
+
+[ext_resource type="Texture2D" uid="uid://c350n35n8mlhf" path="res://Sprites/Upgrade_double.png" id="1_ajop1"]
+[ext_resource type="Texture2D" uid="uid://dijla4pisrrw8" path="res://Sprites/lights/main.png" id="1_og0cj"]
+[ext_resource type="Script" uid="uid://ceti30e2nv5r3" path="res://Scripts/upgrade_2.gd" id="1_qn7xr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ajop1"]
+radius = 9.0
+
+[node name="upgrade2" type="Node2D" unique_id=1283059132]
+scale = Vector2(2, 2)
+script = ExtResource("1_qn7xr")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=325395520]
+scale = Vector2(0.1, 0.1)
+color = Color(0.7532977, 0.00043972253, 0.7539673, 1)
+texture = ExtResource("1_og0cj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=610528563]
+texture = ExtResource("1_ajop1")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1977508298]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=828586869]
+shape = SubResource("CircleShape2D_ajop1")

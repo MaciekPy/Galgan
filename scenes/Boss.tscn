@@ -1,0 +1,575 @@
+[gd_scene format=3 uid="uid://doerj3qnyl5se"]
+
+[ext_resource type="Script" uid="uid://blwh5vpoj15n0" path="res://scenes/boss.gd" id="1_gw42l"]
+[ext_resource type="Texture2D" uid="uid://qa6gwg506hio" path="res://Sprites/lights/main.png" id="2_6ig5k"]
+[ext_resource type="Texture2D" uid="uid://bx8rrb6luyskw" path="res://Sprites/Boss/Boss_Body.png" id="2_pfyq2"]
+[ext_resource type="Texture2D" uid="uid://02g8jiflelfu" path="res://Sprites/Boss/Head.png" id="4_cs582"]
+[ext_resource type="Texture2D" uid="uid://dhxngl1ju7jfe" path="res://Sprites/Boss/LeftTurre_Hitt.png" id="5_85kei"]
+[ext_resource type="Texture2D" uid="uid://c54gce6d2y3pq" path="res://Sprites/Boss/LeftTurret.png" id="5_pfyq2"]
+[ext_resource type="Texture2D" uid="uid://ch7oxlnv827si" path="res://Sprites/explosion.png" id="6_85kei"]
+[ext_resource type="Texture2D" uid="uid://c21caa37xwc0j" path="res://Sprites/Boss/Head_Hit.png" id="7_kitqk"]
+[ext_resource type="Texture2D" uid="uid://cwebgx45gmf5b" path="res://Sprites/force_field.png" id="9_kitqk"]
+[ext_resource type="PackedScene" uid="uid://dup1lt1yhbevp" path="res://scenes/bleed.tscn" id="10_gfnkn"]
+[ext_resource type="AudioStream" uid="uid://4hfx7labmay6" path="res://Audio /Boss/Ambience.wav" id="11_2r62o"]
+[ext_resource type="AudioStream" uid="uid://d1gpeh37xpa7t" path="res://Audio /Explosion/Explosion1.wav" id="11_fhtao"]
+[ext_resource type="AudioStream" uid="uid://bocr7uv8uepul" path="res://Audio /Boss/Rocket Start 002.wav" id="12_678n3"]
+[ext_resource type="AudioStream" uid="uid://bid5bp05hfm1" path="res://Audio /Explosion/Explosion2.wav" id="12_w701h"]
+[ext_resource type="AudioStream" uid="uid://cyajkht5or7yi" path="res://Audio /Explosion/Explosion3.wav" id="13_678n3"]
+[ext_resource type="AudioStream" uid="uid://b8421f1c47lsu" path="res://Audio /Boss/Proximity Signal 007.wav" id="13_frdq4"]
+[ext_resource type="AudioStream" uid="uid://rih4nb41g72e" path="res://Audio /Shoot18.wav" id="15_w701h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_frdq4"]
+size = Vector2(64, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ig5k"]
+size = Vector2(56.333336, 37.166668)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gw42l"]
+size = Vector2(9.666668, 17.666666)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_edv8j"]
+radius = 4.879094
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o02xv"]
+radius = 9.166667
+height = 18.333334
+
+[sub_resource type="Animation" id="Animation_2r62o"]
+resource_name = "Head_Hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/HeadHit:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_85kei"]
+resource_name = "LT_Hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftTurret/LTHit:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ncbpu"]
+resource_name = "LT_explode"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftTurret/LTexplosion:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10011717, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Explosion")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_w701h")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_kitqk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftTurret/LTHit:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RightTurret/RTHit:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/HeadHit:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LeftTurret/LTexplosion:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Head/Headexplosion:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RightTurret/RTexplosion:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Bodyexplosion:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_gfnkn"]
+resource_name = "RT_Hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RightTurret/RTHit:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_c56gl"]
+resource_name = "RT_explode"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RightTurret/RTexplosion:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 7, 0]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Explosion")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_fhtao")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_w701h"]
+resource_name = "big_explode"
+length = 0.76666665
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bodyexplosion:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bodyexplosion2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.047020573, 0.14702058, 0.24702057, 0.34702057, 0.4470206, 0.5470206, 0.64702064, 0.7470206),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Explosion")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_fhtao")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Explosion")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_678n3")
+}],
+"times": PackedFloat32Array(0.06666667)
+}
+tracks/3/use_blend = true
+
+[sub_resource type="Animation" id="Animation_frdq4"]
+resource_name = "entrance"
+length = 3.0
+
+[sub_resource type="Animation" id="Animation_fhtao"]
+resource_name = "head_explode"
+length = 2.3333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/Headexplosion:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Explosion")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_fhtao")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("before explode")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_frdq4")
+}],
+"times": PackedFloat32Array(1.2333333)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gfnkn"]
+_data = {
+&"Head_Hit": SubResource("Animation_2r62o"),
+&"LT_Hit": SubResource("Animation_85kei"),
+&"LT_explode": SubResource("Animation_ncbpu"),
+&"RESET": SubResource("Animation_kitqk"),
+&"RT_Hit": SubResource("Animation_gfnkn"),
+&"RT_explode": SubResource("Animation_c56gl"),
+&"big_explode": SubResource("Animation_w701h"),
+&"entrance": SubResource("Animation_frdq4"),
+&"head_explode": SubResource("Animation_fhtao")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfnkn"]
+size = Vector2(26.666666, 5.333332)
+
+[node name="Boss" type="CharacterBody2D" unique_id=953843232]
+script = ExtResource("1_gw42l")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1314506679]
+collision_layer = 8
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=289941345]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_frdq4")
+
+[node name="Body" type="Sprite2D" parent="." unique_id=705319446]
+texture = ExtResource("2_pfyq2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2094683936]
+position = Vector2(0, -7.4166675)
+shape = SubResource("RectangleShape2D_6ig5k")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=2059574928]
+position = Vector2(-22.833334, 15.500003)
+shape = SubResource("RectangleShape2D_gw42l")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=1155708613]
+position = Vector2(23.166668, 15.500001)
+shape = SubResource("RectangleShape2D_gw42l")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1520306220]
+position = Vector2(9.536743e-07, 2.3841858e-07)
+scale = Vector2(0.4, 0.4)
+color = Color(0.5882353, 0.63529414, 0.2509804, 1)
+texture = ExtResource("2_6ig5k")
+
+[node name="LeftTurret" type="Node2D" parent="." unique_id=22855338]
+position = Vector2(-22.833334, 26.833334)
+
+[node name="LeftTurret" type="Marker2D" parent="LeftTurret" unique_id=1092431592]
+position = Vector2(0.16666603, 0)
+
+[node name="LTArea" type="Area2D" parent="LeftTurret" unique_id=1994486165]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftTurret/LTArea" unique_id=705204924]
+shape = SubResource("CircleShape2D_edv8j")
+
+[node name="LeftTurret2" type="Sprite2D" parent="LeftTurret" unique_id=409451643]
+position = Vector2(0, -3.166666)
+texture = ExtResource("5_pfyq2")
+
+[node name="LTHit" type="Sprite2D" parent="LeftTurret" unique_id=389210691]
+visible = false
+position = Vector2(0, -3.1666667)
+texture = ExtResource("5_85kei")
+
+[node name="LTexplosion" type="Sprite2D" parent="LeftTurret" unique_id=1218719006]
+visible = false
+position = Vector2(0.33333334, -2)
+scale = Vector2(0.4747005, 0.4589753)
+texture = ExtResource("6_85kei")
+hframes = 8
+
+[node name="LTShoot" type="Timer" parent="LeftTurret" unique_id=293278437]
+wait_time = 0.2
+autostart = true
+
+[node name="LTShootCooldown" type="Timer" parent="LeftTurret" unique_id=1031286]
+wait_time = 2.0
+autostart = true
+
+[node name="RightTurret" type="Node2D" parent="." unique_id=2063747541]
+position = Vector2(22.333334, 26.333334)
+
+[node name="RightTurret" type="Marker2D" parent="RightTurret" unique_id=1037197728]
+position = Vector2(0.16666603, 0)
+
+[node name="RTArea" type="Area2D" parent="RightTurret" unique_id=920321541]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightTurret/RTArea" unique_id=618010833]
+shape = SubResource("CircleShape2D_edv8j")
+
+[node name="RightTurret2" type="Sprite2D" parent="RightTurret" unique_id=1095552709]
+position = Vector2(0.83333397, -2.333334)
+texture = ExtResource("5_pfyq2")
+flip_h = true
+
+[node name="RTHit" type="Sprite2D" parent="RightTurret" unique_id=1369886361]
+visible = false
+position = Vector2(0.8333334, -2.3333335)
+texture = ExtResource("5_85kei")
+flip_h = true
+
+[node name="RTexplosion" type="Sprite2D" parent="RightTurret" unique_id=1939266163]
+visible = false
+position = Vector2(0.5, -0.6666667)
+scale = Vector2(0.39094493, 0.3869824)
+texture = ExtResource("6_85kei")
+hframes = 8
+
+[node name="RTShoot" type="Timer" parent="RightTurret" unique_id=2000045802]
+wait_time = 0.2
+autostart = true
+
+[node name="RTShooterCooldown" type="Timer" parent="RightTurret" unique_id=1772813535]
+wait_time = 2.0
+autostart = true
+
+[node name="Head" type="Node2D" parent="." unique_id=1396382407]
+position = Vector2(0, 11.5)
+
+[node name="HeadArea" type="Area2D" parent="Head" unique_id=572940586]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head/HeadArea" unique_id=1147616077]
+position = Vector2(0, -1.3333337)
+shape = SubResource("CapsuleShape2D_o02xv")
+
+[node name="Head" type="Marker2D" parent="Head" unique_id=934438802]
+
+[node name="Head2" type="Sprite2D" parent="Head" unique_id=1896963406]
+position = Vector2(0, 2.166667)
+texture = ExtResource("4_cs582")
+
+[node name="HeadHit" type="Sprite2D" parent="Head" unique_id=34902351]
+visible = false
+position = Vector2(-1, -1.3333333)
+texture = ExtResource("7_kitqk")
+
+[node name="Headexplosion" type="Sprite2D" parent="Head" unique_id=1301168089]
+visible = false
+position = Vector2(0.16666667, -1.3333333)
+scale = Vector2(0.82494134, 0.72804457)
+texture = ExtResource("6_85kei")
+hframes = 8
+
+[node name="HeadShoot" type="Timer" parent="Head" unique_id=864662615]
+wait_time = 0.1
+autostart = true
+
+[node name="HeadCooldown" type="Timer" parent="Head" unique_id=1297646509]
+wait_time = 2.0
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1344925688]
+libraries/ = SubResource("AnimationLibrary_gfnkn")
+
+[node name="Bodyexplosion" type="Sprite2D" parent="." unique_id=1634627357]
+visible = false
+position = Vector2(-19.499998, -6.166668)
+scale = Vector2(1.1012095, 1.0311028)
+texture = ExtResource("6_85kei")
+hframes = 8
+
+[node name="Bodyexplosion2" type="Sprite2D" parent="." unique_id=1248007039]
+visible = false
+position = Vector2(17.833334, -16.666666)
+scale = Vector2(1.4040577, 1.328001)
+texture = ExtResource("6_85kei")
+hframes = 8
+frame = 5
+
+[node name="Ending" type="Timer" parent="." unique_id=21622116]
+wait_time = 3.0
+one_shot = true
+
+[node name="Shield" type="Area2D" parent="." unique_id=1827978891]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield" unique_id=2038744914]
+position = Vector2(0, 22.666666)
+shape = SubResource("RectangleShape2D_gfnkn")
+
+[node name="field" type="Sprite2D" parent="Shield" unique_id=1934965983]
+position = Vector2(0, 21.499998)
+scale = Vector2(0.28042254, 0.2721623)
+texture = ExtResource("9_kitqk")
+
+[node name="RT_Bleed" parent="." unique_id=476139843 instance=ExtResource("10_gfnkn")]
+visible = false
+position = Vector2(22.666668, 19.833332)
+
+[node name="LT_Bleed" parent="." unique_id=259324320 instance=ExtResource("10_gfnkn")]
+visible = false
+position = Vector2(-23.000002, 20.666666)
+
+[node name="Explosion" type="AudioStreamPlayer" parent="." unique_id=1310276174]
+volume_db = -15.0
+pitch_scale = 1.5
+bus = &"Effects"
+
+[node name="ambience" type="AudioStreamPlayer" parent="." unique_id=1440050173]
+stream = ExtResource("11_2r62o")
+volume_db = -15.0
+bus = &"Effects"
+
+[node name="Shoot" type="AudioStreamPlayer" parent="." unique_id=299397298]
+stream = ExtResource("15_w701h")
+volume_db = -10.0
+bus = &"Effects"
+
+[node name="Entrance" type="AudioStreamPlayer" parent="." unique_id=1238026331]
+stream = ExtResource("12_678n3")
+volume_db = -10.0
+bus = &"Effects"
+
+[node name="before explode" type="AudioStreamPlayer" parent="." unique_id=579864426]
+volume_db = -10.0
+bus = &"Effects"
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="LeftTurret/LTArea" to="." method="_on_lt_area_area_entered"]
+[connection signal="timeout" from="LeftTurret/LTShoot" to="." method="_on_lt_shoot_timeout"]
+[connection signal="timeout" from="LeftTurret/LTShootCooldown" to="." method="_on_lt_shoot_cooldown_timeout"]
+[connection signal="area_entered" from="RightTurret/RTArea" to="." method="_on_rt_area_area_entered"]
+[connection signal="timeout" from="RightTurret/RTShoot" to="." method="_on_rt_shoot_timeout"]
+[connection signal="timeout" from="RightTurret/RTShooterCooldown" to="." method="_on_rt_shooter_cooldown_timeout"]
+[connection signal="area_entered" from="Head/HeadArea" to="." method="_on_head_area_area_entered"]
+[connection signal="timeout" from="Head/HeadShoot" to="." method="_on_head_shoot_timeout"]
+[connection signal="timeout" from="Head/HeadCooldown" to="." method="_on_head_cooldown_timeout"]
+[connection signal="timeout" from="Ending" to="." method="_on_ending_timeout"]
+[connection signal="area_entered" from="Shield" to="." method="_on_shield_area_entered"]

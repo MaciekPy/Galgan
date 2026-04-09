@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ddyg061rr1yho"
+path="res://.godot/imported/Laser5.wav-e508fbf7303418e70e22468471d13bcd.sample"
+
+[deps]
+
+source_file="res://Audio /Player/Laser5.wav"
+dest_files=["res://.godot/imported/Laser5.wav-e508fbf7303418e70e22468471d13bcd.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

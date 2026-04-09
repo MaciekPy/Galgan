@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://diuuyo4bye56"]
+
+[ext_resource type="Script" uid="uid://cldsjm4j221pc" path="res://scenes/shield.gd" id="1_e3gf5"]
+[ext_resource type="Texture2D" uid="uid://bqnkjkx630peb" path="res://Sprites/shield.png" id="1_vtru8"]
+[ext_resource type="Texture2D" uid="uid://qa6gwg506hio" path="res://Sprites/lights/main.png" id="2_ohv3a"]
+[ext_resource type="AudioStream" uid="uid://dciikv86wmefc" path="res://Audio /Upgrades/PowerUp14.wav" id="4_gsp1a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vtru8"]
+
+[node name="Shield" type="Area2D" unique_id=777422701]
+scale = Vector2(2.5, 2.5)
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_e3gf5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1499518898]
+texture = ExtResource("1_vtru8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=640203311]
+shape = SubResource("CircleShape2D_vtru8")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=230928280]
+scale = Vector2(0.14237458, 0.12603377)
+color = Color(0.24705882, 1, 1, 1)
+texture = ExtResource("2_ohv3a")
+
+[node name="Pick-up" type="AudioStreamPlayer" parent="." unique_id=1696819694]
+stream = ExtResource("4_gsp1a")
+bus = &"Effects"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

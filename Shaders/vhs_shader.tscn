@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://b0ysfn8liru8f"]
+
+[ext_resource type="Shader" uid="uid://b6lk1xf2c4sn" path="res://Shaders/vhs_shader.gdshader" id="1_oskiu"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_oskiu"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oskiu"]
+resource_local_to_scene = true
+shader = ExtResource("1_oskiu")
+shader_parameter/tex = SubResource("ViewportTexture_oskiu")
+shader_parameter/mask_type = 2
+shader_parameter/curve = 0.0690000032775
+shader_parameter/sharpness = 0.6666667
+shader_parameter/color_offset = 0.0
+shader_parameter/mask_brightness = 1.0
+shader_parameter/scanline_brightness = 0.734000011115
+shader_parameter/min_scanline_thickness = 0.5
+shader_parameter/aspect = 0.75
+shader_parameter/wobble_strength = 0.0
+
+[node name="VHS_SHADER" type="CanvasLayer" unique_id=353083942]
+
+[node name="vhs" type="ColorRect" parent="." unique_id=1817538867]
+material = SubResource("ShaderMaterial_oskiu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=572946930]
+size = Vector2i(240, 240)

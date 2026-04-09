@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://4hfx7labmay6"
+path="res://.godot/imported/Ambience.wav-11931e0919d344bf6abdc9e8ee7c8706.sample"
+
+[deps]
+
+source_file="res://Audio /Boss/Ambience.wav"
+dest_files=["res://.godot/imported/Ambience.wav-11931e0919d344bf6abdc9e8ee7c8706.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

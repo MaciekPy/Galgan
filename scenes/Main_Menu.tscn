@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://dpfy3gi15hugh"]
+
+[ext_resource type="Script" uid="uid://c3jfiymduvefb" path="res://scenes/main_menu.gd" id="1_0bfng"]
+[ext_resource type="Texture2D" uid="uid://6s7tgae7iq68" path="res://Sprites/Background_Space.png" id="1_y2rfe"]
+[ext_resource type="FontFile" uid="uid://b63cdbaxppjjn" path="res://PressStart2P-Regular.ttf" id="2_0bfng"]
+[ext_resource type="Texture2D" uid="uid://ck676qo8kdq7p" path="res://Sprites/Icons/musicOn.png" id="4_h8c6n"]
+[ext_resource type="Texture2D" uid="uid://k0at4jcnhmpo" path="res://Sprites/Icons/audioOn.png" id="5_h8c6n"]
+[ext_resource type="AudioStream" uid="uid://bbjd5rs48xk07" path="res://Audio /Blip_select 2.wav" id="6_d3eho"]
+[ext_resource type="AudioStream" uid="uid://bsjdrwx08u5oa" path="res://Audio /Player/Laser1.wav" id="6_ytedg"]
+[ext_resource type="PackedScene" uid="uid://d3cuusw6cp078" path="res://scenes/transistion_animation.tscn" id="8_5d5v2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bfng"]
+bg_color = Color(0.46666667, 0.19607843, 0.56078434, 1)
+
+[node name="MainMenu" type="Control" unique_id=1787596269]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0bfng")
+
+[node name="BG" type="Sprite2D" parent="." unique_id=1319937479]
+position = Vector2(481.49997, 582.49994)
+scale = Vector2(0.31327158, 0.24878472)
+texture = ExtResource("1_y2rfe")
+
+[node name="Title" type="Label" parent="." unique_id=2079680192]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 114.0
+offset_right = 957.0
+offset_bottom = 237.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_0bfng")
+theme_override_font_sizes/font_size = 63
+text = "Galgan 
+Space 
+Fighter"
+horizontal_alignment = 1
+
+[node name="Title2" type="Label" parent="." unique_id=991531316]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 114.0
+offset_right = 957.0
+offset_bottom = 237.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_0bfng")
+theme_override_font_sizes/font_size = 60
+text = "Galgan 
+Space 
+Fighter"
+horizontal_alignment = 1
+
+[node name="Start" type="Button" parent="." unique_id=1265036800]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = 260.0
+offset_right = 110.0
+offset_bottom = 332.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.68235296, 0.96862745, 0.7372549, 1)
+theme_override_colors/font_hover_color = Color(0.654902, 0.46666667, 0.69803923, 1)
+theme_override_fonts/font = ExtResource("2_0bfng")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_0bfng")
+text = "Start"
+
+[node name="Music" type="Button" parent="." unique_id=1533695306]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -59.0
+offset_top = 221.0
+offset_right = -71.0
+offset_bottom = -70.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.07450981, 0.023529412, 0.12156863, 1)
+icon = ExtResource("4_h8c6n")
+
+[node name="Sound" type="Button" parent="." unique_id=215418722]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.926
+anchor_top = 1.0
+anchor_right = 0.926
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = 243.0
+offset_right = -117.0
+offset_bottom = -70.0
+grow_horizontal = 0
+grow_vertical = 0
+icon = ExtResource("5_h8c6n")
+
+[node name="StartSound" type="AudioStreamPlayer" parent="." unique_id=1633270455]
+stream = ExtResource("6_d3eho")
+volume_db = -10.0
+bus = &"Effects"
+
+[node name="SoundTest" type="AudioStreamPlayer" parent="." unique_id=1689642083]
+stream = ExtResource("6_ytedg")
+volume_db = -15.0
+bus = &"Effects"
+
+[node name="TransistionAnimation" parent="." unique_id=2128470441 instance=ExtResource("8_5d5v2")]
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Music" to="." method="_on_music_pressed"]
+[connection signal="pressed" from="Sound" to="." method="_on_sound_pressed"]
